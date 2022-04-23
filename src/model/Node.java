@@ -46,4 +46,25 @@ public class Node {
 	public String turnNode() {
 		return ""+value; 
 	}
+	
+	public String toString() {
+		String ans = value + ""; 
+		
+		if(next != null) {
+			
+			ans+= ", " + next;
+		}
+		return ans;
+	}
+	
+	public String recursive(Node head) { 
+		
+		String ans = value + ""; 
+		
+		if(next != head) {
+			ans+= ", " + next.recursive(head);
+			
+		}
+		return ans;
+	}
 }

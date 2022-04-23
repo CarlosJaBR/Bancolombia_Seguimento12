@@ -37,17 +37,24 @@ public class BankSystem {
 			System.out.println("");
 			break;
 		case 2:
+			
 			showCurrentTurn();
+			
 			System.out.println("");
+			System.out.println(bc.listRecursiva());
 			break;
 		case 3:
-			System.out.println("Hola 3");
+			
+			passTurnToList();
+			
+			System.out.println("");
 			break;
 		case 4:
-			System.out.println("Hola 4");
+			deleteTurnToList();
+			System.out.println("");
 			break;
 		case 5:
-			System.out.println("Successfull exit");
+			System.out.println("Successful exit");
 			break; 
 		}
 	}
@@ -78,11 +85,32 @@ public class BankSystem {
 	}
 	
 	public void registerTurnToList() {
-		bc.addTurnToList();
+		
+		if(bc.verifyNTurn()==true) {
+			bc.addTurnToList();
+		}else {
+			System.out.println("Limit number of turns");
+		}
 	}
 	
 	public void showCurrentTurn() {
 		System.out.println(bc.currentTurnMessage());
 	}
 	
+	public void deleteTurnToList() {
+		
+		if(bc.deleteCurrentTurns()==true) {
+			System.out.println("Successful deletion of current turn");
+		}else {
+			System.out.println("No turns added");
+		}
+	}
+	
+	public void passTurnToList() {
+		if(bc.passCurrentTurn()==true) {
+			System.out.println("Successful turn change");
+		}else {
+			showCurrentTurn();
+		}
+	}
 }

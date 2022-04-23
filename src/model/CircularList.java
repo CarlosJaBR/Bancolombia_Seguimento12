@@ -34,47 +34,83 @@ public class CircularList {
 		}
 	}
 	
-	public boolean deleteTurn() {
-		if(head==null) {
-			return false;  //check
+	
+	public boolean dTurn() { 
+		if(head == null) {
+			return false;
 		}else {
-		
-			Node temp = currentTurn;
-			boolean check = false; 
-			while(!check) {
-				if(temp==currentTurn) {			
-					if(temp==head&&temp==last) {
-						head=null;
-						last=null;
-					}else if(temp==head){
-						head=head.getNext();
-						head.setNext(null);
-					}else if(temp==last) {
-						last=last.getPrev(); 
-						last.setNext(null);
-					}else {
-						temp.getPrev().setNext(temp.getNext());
-						temp.getNext().setPrev(temp.getPrev());
-					}
-					check=true;
-				}else {
-					temp=temp.getNext();
-				}
+			Node aux = head; 
+			if(head==currentTurn&&last==currentTurn) {
+				head = null;
+				last = null;
+				currentTurn = null; 
+				return true;
+			}else if(currentTurn==head) {
+				head = aux.getNext();
+				aux.getNext().setPrev(last);
+				aux.getPrev().setPrev(aux.getNext());
+				return true;
+			}else if(currentTurn==last) {
+				aux= last;
+				last = aux.getPrev();
+				aux.getPrev().setNext(head);
+				aux.getNext().setPrev(last);
+				return true;
+			}else {
+				aux=currentTurn;
+				aux.getPrev().setNext(aux.getNext());
+				aux.getNext().setPrev(aux.getPrev());
+				currentTurn=aux.getNext();
+				aux=null;
+				return true;
 			}
-			
-			
-			
-			
-			return true;
 		}
-		
 	}
+	
+	
+	public boolean passTurn() {
+		
+		if(head==null) {
+			return false;
+		}else { 
+			return true;
+				
+		}
+
+	}
+	
 	
 	public String turn() { 
 		if(head==null) {
-			return "No hay turnos agregados";
+			return "No turns added";
 		}else {
 			return "["+currentTurn.turnNode()+"]";
+		}
+	}
+	
+	public String toString() {
+		
+		String ans = "[]";
+
+		if (head != null) {
+			ans = "[";
+			Node temp = head;
+			while (temp.getNext() != head) {
+				ans += temp.getValue() + ", ";
+				temp = temp.getNext();
+			}
+			ans += temp.getValue() + "]";
+
+		}
+
+		return ans;
+	}
+	
+	public String recursivo() {
+		if(head==null) {
+			return "[]";
+		}else {
+			return "["+head.recursive(head)+"]";
 		}
 	}
 }
