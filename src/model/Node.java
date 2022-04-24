@@ -67,4 +67,8 @@ public class Node {
 		}
 		return ans;
 	}
+	
+	public String info() {
+		return ""+value;
+	}
 }

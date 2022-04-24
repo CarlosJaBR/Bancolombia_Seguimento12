@@ -30,18 +30,21 @@ public class BankController {
 	}
 	
 	public boolean deleteCurrentTurns() {
+		
 		if(listTurn.dTurn()==true) {
 			nTurn--;
+			return true;
+		}else {
+			return false;
 		}
-		return listTurn.dTurn();
 	}
 	
 	public boolean verifyNTurn() {
 		return (nTurn<50)?true:false;
 	}
 	
-	public boolean passCurrentTurn() {
-		return listTurn.passTurn();
+	public void passCurrentTurn() {
+		listTurn.passTurn();
 	}
 	
 	

@@ -36,49 +36,55 @@ public class CircularList {
 	
 	
 	public boolean dTurn() { 
+		
 		if(head == null) {
 			return false;
 		}else {
-			Node aux = head; 
-			if(head==currentTurn&&last==currentTurn) {
+			Node aux = currentTurn; 
+			//Node aux = head;
+			if(aux==head&&last==aux) {
 				head = null;
 				last = null;
 				currentTurn = null; 
 				return true;
-			}else if(currentTurn==head) {
+			}else if(aux==head) {
+				aux = head;
 				head = aux.getNext();
 				aux.getNext().setPrev(last);
-				aux.getPrev().setPrev(aux.getNext());
+				aux.getPrev().setNext(aux.getNext());
+				currentTurn = head;
 				return true;
-			}else if(currentTurn==last) {
+			}else if(aux==last) {
 				aux= last;
 				last = aux.getPrev();
 				aux.getPrev().setNext(head);
 				aux.getNext().setPrev(last);
+				currentTurn = head; 
 				return true;
 			}else {
 				aux=currentTurn;
 				aux.getPrev().setNext(aux.getNext());
 				aux.getNext().setPrev(aux.getPrev());
-				currentTurn=aux.getNext();
-				aux=null;
+				currentTurn=currentTurn.getNext();
 				return true;
 			}
 		}
 	}
 	
 	
-	public boolean passTurn() {
+	public void passTurn() {
 		
-		if(head==null) {
-			return false;
-		}else { 
-			return true;
-				
+		if(head!=null) {
+			
+			
+			Node aux = currentTurn;
+			aux.setNext(currentTurn.getNext());
+			aux.setPrev(currentTurn.getPrev());
+			currentTurn=currentTurn.getNext();
+			
 		}
 
 	}
-	
 	
 	public String turn() { 
 		if(head==null) {

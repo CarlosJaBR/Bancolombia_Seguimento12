@@ -41,7 +41,7 @@ public class BankSystem {
 			showCurrentTurn();
 			
 			System.out.println("");
-			System.out.println(bc.listRecursiva());
+			System.out.println(bc.listTurnsMessage());
 			break;
 		case 3:
 			
@@ -107,10 +107,8 @@ public class BankSystem {
 	}
 	
 	public void passTurnToList() {
-		if(bc.passCurrentTurn()==true) {
-			System.out.println("Successful turn change");
-		}else {
-			showCurrentTurn();
-		}
+		bc.passCurrentTurn();
+		System.out.println("Successful turn change");
+		
 	}
 }
