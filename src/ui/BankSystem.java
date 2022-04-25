@@ -37,10 +37,11 @@ public class BankSystem {
 			System.out.println("");
 			break;
 		case 2:
-			
+			System.out.println("*Current turn*");
 			showCurrentTurn();
 			
 			System.out.println("");
+			System.out.println("*Turns list*");
 			System.out.println(bc.listTurnsMessage());
 			break;
 		case 3:
@@ -54,7 +55,7 @@ public class BankSystem {
 			System.out.println("");
 			break;
 		case 5:
-			System.out.println("Successful exit");
+			System.out.println("*Successful exit. Bye :3 *");
 			break; 
 		}
 	}
@@ -108,7 +109,10 @@ public class BankSystem {
 	
 	public void passTurnToList() {
 		bc.passCurrentTurn();
-		System.out.println("Successful turn change");
-		
+		if(bc.verifyList()==true) {
+			System.out.println("No turns added");
+		}else {
+			System.out.println("Successful turn change");
+		}
 	}
 }

@@ -41,7 +41,6 @@ public class CircularList {
 			return false;
 		}else {
 			Node aux = currentTurn; 
-			//Node aux = head;
 			if(aux==head&&last==aux) {
 				head = null;
 				last = null;
@@ -76,11 +75,18 @@ public class CircularList {
 		
 		if(head!=null) {
 			
-			
 			Node aux = currentTurn;
-			aux.setNext(currentTurn.getNext());
-			aux.setPrev(currentTurn.getPrev());
-			currentTurn=currentTurn.getNext();
+			
+			if(aux.getCounter()<3) {
+				aux.setCounter((aux.getCounter())+1);
+				//System.out.println("Value: "+ aux.info() + " - : " + aux.getCounter());
+				aux.setNext(currentTurn.getNext());
+				aux.setPrev(currentTurn.getPrev());
+				currentTurn=currentTurn.getNext();
+				
+			}else {
+				boolean flag = dTurn();
+			}
 			
 		}
 
@@ -118,5 +124,9 @@ public class CircularList {
 		}else {
 			return "["+head.recursive(head)+"]";
 		}
+	}
+	
+	public boolean validationList() {
+		return (head==null)?true:false;
 	}
 }

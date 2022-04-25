@@ -47,5 +47,9 @@ public class BankController {
 		listTurn.passTurn();
 	}
 	
+	public boolean verifyList() {
+		return listTurn.validationList();
+	}
+	
 	
 }
